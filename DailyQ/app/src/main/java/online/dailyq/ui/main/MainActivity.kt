@@ -1,6 +1,5 @@
 package online.dailyq.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import online.dailyq.R
 import online.dailyq.databinding.ActivityMainBinding
