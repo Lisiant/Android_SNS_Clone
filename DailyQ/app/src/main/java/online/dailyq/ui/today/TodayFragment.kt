@@ -11,6 +11,8 @@ import online.dailyq.databinding.FragmentTodayBinding
 import online.dailyq.ui.base.BaseFragment
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class TodayFragment : BaseFragment() {
@@ -35,12 +37,15 @@ class TodayFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            val qidDateFormat = SimpleDateFormat("yyyy-MM-dd")
-            val qid = qidDateFormat.format(Date())
-            val question = api.getQuestion(qid)
+//            val qidDateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val question = api.getQuestion(LocalDate.now())
 
-            val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.KOREA)
-            binding.date.text = dateFormat.format(qidDateFormat.parse(question.id))
+//            val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.KOREA)
+//            binding.date.text = dateFormat.format(qidDateFormat.parse(question.id))
+
+            val dateFormatter = DateTimeFormatter.ofPattern("yyyy. M. d.")
+            binding.date.text = dateFormatter.format(question.id)
+
             binding.question.text = question.text
 
         }
