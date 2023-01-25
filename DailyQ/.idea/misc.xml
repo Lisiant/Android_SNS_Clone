@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Lisiant_Study/Android_SNS_Clone/DailyQ/app/src/main/res/layout/activity_write.xml" value="0.20833333333333334" />
+        <entry key="..\:/Lisiant_Study/Android_SNS_Clone/DailyQ/app/src/main/res/layout/fragment_today.xml" value="0.12613981762917933" />
+        <entry key="..\:/Lisiant_Study/Android_SNS_Clone/DailyQ/app/src/main/res/menu/bottom_nav_menu.xml" value="0.259375" />
+        <entry key="..\:/Lisiant_Study/Android_SNS_Clone/DailyQ/app/src/main/res/menu/write_menu.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/wkdxo/Desktop/Study/Android_client/Android_SNS_Clone/DailyQ/app/src/main/res/drawable/ic_dailyq.xml" value="0.1315" />
         <entry key="..\:/Users/wkdxo/Desktop/Study/Android_client/Android_SNS_Clone/DailyQ/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1315" />
         <entry key="..\:/Users/wkdxo/Desktop/Study/Android_client/Android_SNS_Clone/DailyQ/app/src/main/res/drawable/ic_person.xml" value="0.1315" />
