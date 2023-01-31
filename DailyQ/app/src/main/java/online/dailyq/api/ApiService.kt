@@ -11,6 +11,7 @@ import online.dailyq.api.converter.LocalDateConverterFactory
 import online.dailyq.api.response.Answer
 import online.dailyq.api.response.AuthToken
 import online.dailyq.api.response.Question
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -32,6 +33,7 @@ interface ApiService {
                 .connectTimeout(3, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
+                .addInterceptor(AuthInterceptor())
                 .addInterceptor(logging)
                 .build()
 
@@ -75,10 +77,10 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("/v2/token")
-    suspend fun refreshToken(
+    fun refreshToken(
         @Field("refresh_token") refreshToken: String,
         @Field("grant_type") grantType: String = "refresh_token"
-    ): Response<AuthToken>
+    ): Call<AuthToken>
 
     @GET("/v2/questions/{qid}")
     suspend fun getQuestion(
