@@ -39,8 +39,8 @@
                     android:id="@+id/question"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_margin="@dimen/margin_normal"
+                    android:gravity="center"
                     android:minHeight="@dimen/qa_height"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
 
@@ -99,9 +99,9 @@
                         android:id="@+id/text_answer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_marginTop="@dimen/margin_small"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
                 </LinearLayout>
 
 

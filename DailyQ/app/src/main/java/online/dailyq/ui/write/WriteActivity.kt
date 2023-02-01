@@ -1,12 +1,16 @@
 package online.dailyq.ui.write
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import online.dailyq.R
+import online.dailyq.api.asRequestBody
 import online.dailyq.api.response.Answer
 import online.dailyq.api.response.Question
 import online.dailyq.databinding.ActivityWriteBinding
@@ -32,7 +36,21 @@ class WriteActivity : BaseActivity() {
     lateinit var mode: Mode
     lateinit var question: Question
     var answer: Answer? = null
+    var imageUrl: String? = null
 
+    val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if (result.resultCode == Activity.RESULT_OK){
+                lifecycleScope.launch{
+                    val imageUrl = result.data?.data ?: return@launch
+                    val requestBody = imageUrl.asRequestBody(contentResolver)
+
+                    // createFormdata
+                    val part = MultipartBody.Part.createFormData("image", )
+                }
+            }
+
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

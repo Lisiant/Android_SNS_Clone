@@ -3,6 +3,7 @@ package online.dailyq.api
 import android.content.Context
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import online.dailyq.AuthManager
@@ -10,6 +11,7 @@ import online.dailyq.api.adapter.LocalDateAdapter
 import online.dailyq.api.converter.LocalDateConverterFactory
 import online.dailyq.api.response.Answer
 import online.dailyq.api.response.AuthToken
+import online.dailyq.api.response.Image
 import online.dailyq.api.response.Question
 import retrofit2.Call
 import retrofit2.Response
@@ -34,6 +36,7 @@ interface ApiService {
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .addInterceptor(AuthInterceptor())
+                .authenticator(TokenRefreshAuthenticator())
                 .addInterceptor(logging)
                 .build()
 
@@ -73,13 +76,15 @@ interface ApiService {
         @Field("username") uid: String,
         @Field("password") password: String,
         @Field("grant_type") grantType: String = "password",
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): Response<AuthToken>
 
     @FormUrlEncoded
     @POST("/v2/token")
     fun refreshToken(
         @Field("refresh_token") refreshToken: String,
-        @Field("grant_type") grantType: String = "refresh_token"
+        @Field("grant_type") grantType: String = "refresh_token",
+        @Tag authType: AuthType = AuthType.NO_AUTH
     ): Call<AuthToken>
 
     @GET("/v2/questions/{qid}")
@@ -107,13 +112,18 @@ interface ApiService {
         @Path("qid") qid: LocalDate,
         @Field("text") text: String? = null,
         @Field("photo") photo: String? = null,
-        @Path("uid") uid: String? = "AuthManager.uid"
+        @Path("uid") uid: String? = AuthManager.uid
     ): Response<Answer>
 
     @DELETE("/v2/questions/{qid}/answers/{uid}")
     suspend fun deleteAnswer(
         @Path("qid") qid: LocalDate,
-        @Path("uid") uid: String? = "AuthManager.uid"
+        @Path("uid") uid: String? = AuthManager.uid
     ): Response<Unit>
 
+    @Multipart
+    @POST("/v2/images")
+    suspend fun uploadImage(
+        @Part image: MultipartBody.Part,
+    ): Response<Image>
 }
