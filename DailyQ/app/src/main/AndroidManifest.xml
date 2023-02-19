@@ -18,6 +18,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.image.ImageViewerActivity"
+            android:label=""
+            android:theme="@style/Theme.DailyQ.ImageViewer" />
+        <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.DailyQ.NoActionBar">

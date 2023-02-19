@@ -19,4 +19,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.DailyQ.ImageViewer">
+        <item name="android:windowFullscreen">true</item>
+        <item name="actionBarStyle">@style/Theme.DailyQ.Dark.ActionBar</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="Theme.DailyQ.Dark.ActionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
+        <item name="background">@color/transparent_bar</item>
+    </style>
+
 </resources>

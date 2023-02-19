@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import online.dailyq.R
 import online.dailyq.api.response.Question
 import online.dailyq.databinding.FragmentTodayBinding
 import online.dailyq.ui.base.BaseFragment
+import online.dailyq.ui.image.ImageViewerActivity
 import online.dailyq.ui.write.WriteActivity
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -101,6 +103,20 @@ class TodayFragment : BaseFragment() {
 
         binding.writeButton.isVisible = (answer == null)
 
+        binding.photoAnswer.isVisible = !answer?.photo.isNullOrEmpty()
+        answer?.photo?.let {
+            binding.photoAnswer.load(it) {
+                placeholder(R.drawable.ph_image)
+            }
+            binding.photoAnswer.setOnClickListener {
+                startActivity(Intent(
+                    requireContext(),
+                    ImageViewerActivity::class.java
+                ).apply {
+                    putExtra(ImageViewerActivity.EXTRA_URL, answer.photo)
+                })
+            }
+        }
     }
 
     private fun showDeleteConfirmDialog() {
