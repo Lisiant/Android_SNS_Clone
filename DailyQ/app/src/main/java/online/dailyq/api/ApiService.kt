@@ -87,6 +87,12 @@ interface ApiService {
         @Tag authType: AuthType = AuthType.NO_AUTH
     ): Call<AuthToken>
 
+    @GET("/v2/questions")
+    suspend fun getQuestions(
+        @Query("from_date") fromDate: LocalDate,
+        @Query("page_size") pageSize: Int
+    ): Response<List<Question>>
+
     @GET("/v2/questions/{qid}")
     suspend fun getQuestion(
         @Path("qid") qid: LocalDate
@@ -126,4 +132,5 @@ interface ApiService {
     suspend fun uploadImage(
         @Part image: MultipartBody.Part,
     ): Response<Image>
+
 }
