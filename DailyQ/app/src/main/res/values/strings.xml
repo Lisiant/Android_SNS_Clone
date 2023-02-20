@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">DailyQ</string>
+    <string name="test">test</string>
 
     <string name="title_timeline">타임라인</string>
     <string name="title_today">오늘의 질문</string>
@@ -26,5 +27,10 @@
     <string name="error_password_too_short">패스워드가 너무 짧습니다.</string>
     <string name="error_password_must_contain_number">패스워드에는 숫자가 포함되어야 합니다.</string>
     <string name="error_login_failed">아이디 또는 패스워드를 다시 확인해주세요.</string>
+
+    <!--  타임라인  -->
+    <string name="answer_count_format">%d명이 답했습니다</string>
+    <string name="no_answer_yet">아무도 답을 하지 않았습니다...</string>
+    <string name="retry">재시도</string>
 
 </resources>
