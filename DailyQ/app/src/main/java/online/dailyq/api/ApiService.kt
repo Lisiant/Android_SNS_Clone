@@ -98,6 +98,11 @@ interface ApiService {
         @Path("qid") qid: LocalDate
     ): Response<Question>
 
+    @GET("/v2/questions/{qid}/answers")
+    suspend fun getAnswers(
+        @Path("qid") qid: LocalDate
+    ): Response<List<Answer>>
+
     @GET("/v2/questions/{qid}/answers/{uid}")
     suspend fun getAnswer(
         @Path("qid") qid: LocalDate,
