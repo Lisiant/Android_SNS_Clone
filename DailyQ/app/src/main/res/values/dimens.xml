@@ -12,5 +12,6 @@
     <dimen name="divider">1dp</dimen>
 
     <dimen name="thumbnail_rounded_corner">4dp</dimen>
+    <dimen name="user_photo_normal">48dp</dimen>
 
 </resources>
