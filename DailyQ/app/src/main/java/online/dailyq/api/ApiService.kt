@@ -3,6 +3,7 @@ package online.dailyq.api
 import android.content.Context
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
+import okhttp3.Cache
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,18 +27,24 @@ interface ApiService {
     companion object {
         private var INSTANCE: ApiService? = null
 
-        private fun okHttpClient(): OkHttpClient {
+        private fun okHttpClient(context: Context): OkHttpClient {
             val builder = OkHttpClient.Builder()
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
+
+            val cacheSize = 5 * 1024 * 1024L // 5 MB
+            val cache = Cache(context.cacheDir, cacheSize)
 
             return builder
                 .connectTimeout(3, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
+                .cache(cache)
                 .addInterceptor(AuthInterceptor())
                 .authenticator(TokenRefreshAuthenticator())
                 .addInterceptor(logging)
+                .addInterceptor(EndpointLoggingInterceptor("AppInterceptor", "answers"))
+                .addNetworkInterceptor(EndpointLoggingInterceptor("NetworkInterceptor", "answers"))
                 .build()
 
         }
@@ -53,7 +60,7 @@ interface ApiService {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addConverterFactory(LocalDateConverterFactory())
                 .baseUrl("http://10.0.2.2:5000")
-                .client(okHttpClient())
+                .client(okHttpClient(context))
                 .build()
                 .create(ApiService::class.java)
 
