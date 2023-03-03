@@ -10,10 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import online.dailyq.AuthManager
 import online.dailyq.api.adapter.LocalDateAdapter
 import online.dailyq.api.converter.LocalDateConverterFactory
-import online.dailyq.api.response.Answer
-import online.dailyq.api.response.AuthToken
-import online.dailyq.api.response.Image
-import online.dailyq.api.response.Question
+import online.dailyq.api.response.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -144,5 +141,24 @@ interface ApiService {
     suspend fun uploadImage(
         @Part image: MultipartBody.Part,
     ): Response<Image>
+
+    @GET("/v2/users/{uid}")
+    suspend fun getUser(
+        @Path("uid") uid: String
+    ): Response<User>
+
+    @POST("/v2/user/following/{uid}")
+    suspend fun follow(
+        @Path("uid") uid: String
+    ): Response<Unit>
+
+
+
+    @GET("/v2/users/{uid}/answers")
+    suspend fun getUserAnswers(
+        @Path("uid") uid: String,
+        @Query("from_date") fromDate: LocalDate? = null
+    ): Response<List<QuestionAndAnswer>>
+
 
 }
