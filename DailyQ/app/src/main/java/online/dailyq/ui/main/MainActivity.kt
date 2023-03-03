@@ -28,11 +28,11 @@ class MainActivity : BaseActivity() {
                 }
                 R.id.today -> {
                     ft.replace(R.id.host, TodayFragment())
-                    supportActionBar?.setTitle(R.string.title_timeline)
+                    supportActionBar?.setTitle(R.string.title_today)
                 }
                 R.id.profile -> {
                     ft.replace(R.id.host, ProfileFragment())
-                    supportActionBar?.setTitle(R.string.title_timeline)
+                    supportActionBar?.setTitle(R.string.title_profile)
                 }
             }
             ft.commit()

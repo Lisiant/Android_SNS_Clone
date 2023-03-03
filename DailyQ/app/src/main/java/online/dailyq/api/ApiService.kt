@@ -152,7 +152,10 @@ interface ApiService {
         @Path("uid") uid: String
     ): Response<Unit>
 
-
+    @DELETE("/v2/user/following/{uid}")
+    suspend fun unfollow(
+        @Path("uid") uid: String,
+    ): Response<Unit>
 
     @GET("/v2/users/{uid}/answers")
     suspend fun getUserAnswers(

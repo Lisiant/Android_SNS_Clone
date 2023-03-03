@@ -14,4 +14,6 @@
     <dimen name="thumbnail_rounded_corner">4dp</dimen>
     <dimen name="user_photo_normal">48dp</dimen>
 
+    <dimen name="user_photo_large">96dp</dimen>
+    <dimen name="count_cell_width">104dp</dimen>
 </resources>

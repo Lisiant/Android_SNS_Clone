@@ -10,5 +10,6 @@ data class User(
     val answerCount: Int,
     val followerCount: Int,
     val followingCount: Int,
+    val isFollowing: Boolean?,
     val updatedAt: Date
 )
