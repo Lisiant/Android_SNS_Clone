@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_normal"
         android:layout_marginEnd="@dimen/margin_normal"
-        android:text="@string/test"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintBottom_toTopOf="@id/description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +34,6 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="@string/test"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintBottom_toBottomOf="@id/photo"
         app:layout_constraintEnd_toEndOf="@id/name"
@@ -69,7 +67,6 @@
                 android:gravity="center"
                 android:minWidth="@dimen/count_cell_width"
                 android:paddingBottom="@dimen/margin_small"
-                android:text="@string/test"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -100,7 +97,6 @@
                 android:gravity="center"
                 android:minWidth="@dimen/count_cell_width"
                 android:paddingBottom="@dimen/margin_small"
-                android:text="@string/test"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -155,4 +151,12 @@
         android:enabled="false"
         app:layout_constraintTop_toBottomOf="@id/count_area" />
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@color/color_under_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/follow_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
